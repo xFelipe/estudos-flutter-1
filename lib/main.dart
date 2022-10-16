@@ -11,26 +11,117 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Column(
-          mainAxisAlignment: MainAxisAlignment.center,  // Eixo Y, que nesse caso é o eixo principal da Column
-          crossAxisAlignment: CrossAxisAlignment.end, // Eixo X, que nesse caso é o eixo secundário
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.white,
-              width: 200,
-              height: 153,
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                Container(
+                  color: Colors.red,
+                  width: 100,
+                  height: 100,
+                ),
+                Container(
+                  color: Colors.blue,
+                  width: 50,
+                  height: 50,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Container(
+                      color: Colors.white,
+                      width: 100,
+                      height: 100,
+                    ),
+                    Container(
+                      color: Colors.amber,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Container(
+                      color: Colors.amber,
+                      width: 100,
+                      height: 100,
+                    ),
+                    Container(
+                      color: Colors.white,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                )
+              ],
+            ),
+            Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                Container(
+                  color: Colors.blue,
+                  width: 100,
+                  height: 100,
+                ),
+                Container(
+                  color: Colors.red,
+                  width: 50,
+                  height: 50,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  color: Colors.cyan,
+                  width: 50,
+                  height: 50,
+                ),
+                Container(
+                  color: Colors.pinkAccent,
+                  width: 50,
+                  height: 50,
+                ),
+                Container(
+                  color: Colors.purple,
+                  width: 50,
+                  height: 50,
+                ),
+              ],
             ),
             Container(
-              color: Colors.red,
+              color: Colors.amber,
               width: 300,
-              height: 153,
+              height: 30,
+              child: const Text("Texto maluco",
+                  style: TextStyle(color: Colors.black, fontSize: 25),
+                  textAlign: TextAlign.center),
             ),
+            ElevatedButton(onPressed: () {
+              print("Você apertou o Botão!");
+            }, child: Text("Aperte o botão!"))
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
