@@ -111,13 +111,20 @@ class MyApp extends StatelessWidget {
               color: Colors.amber,
               width: 300,
               height: 30,
-              child: const Text("Texto maluco",
-                  style: TextStyle(color: Colors.black, fontSize: 25),
-                  textAlign: TextAlign.center),
+              child: const Text(
+                "Texto maluco",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-            ElevatedButton(onPressed: () {
-              print("Você apertou o Botão!");
-            }, child: Text("Aperte o botão!"))
+            ElevatedButton(
+                onPressed: () {
+                  print("Você apertou o Botão!");
+                },
+                child: Text("Aperte o botão!"))
           ],
         ),
       ),
