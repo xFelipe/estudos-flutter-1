@@ -15,38 +15,20 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Stack(
+        home: Column(
+          mainAxisAlignment: MainAxisAlignment.center,  // Eixo Y, que nesse caso é o eixo principal da Column
+          crossAxisAlignment: CrossAxisAlignment.end, // Eixo X, que nesse caso é o eixo secundário
           children: [
-            Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: [
-                Container(
-                  color: Colors.red,
-                  width: 500,
-                  height: 760,
-                ),
-              ],
+            Container(
+              color: Colors.white,
+              width: 200,
+              height: 153,
             ),
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  color: Colors.white,
-                  width: 500,
-                  height: 507,
-                ),
-              ],
+            Container(
+              color: Colors.red,
+              width: 300,
+              height: 153,
             ),
-            Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Container(
-                  color: Colors.blue,
-                  width: 500,
-                  height: 254,
-                ),
-              ],
-            )
           ],
         ));
   }
