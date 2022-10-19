@@ -15,142 +15,74 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      home: Scaffold(
+        appBar: AppBar(title: Text("Flutter: Meus primeiros passos")),
+        body: Column(
           children: [
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  color: Colors.red,
-                  width: 100,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.blue,
-                  width: 50,
-                  height: 50,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      color: Colors.white,
-                      width: 100,
-                      height: 100,
-                    ),
-                    Container(
-                      color: Colors.amber,
-                      width: 50,
-                      height: 50,
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      color: Colors.amber,
-                      width: 100,
-                      height: 100,
-                    ),
-                    Container(
-                      color: Colors.white,
-                      width: 50,
-                      height: 50,
-                    ),
-                  ],
-                )
-              ],
-            ),
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  color: Colors.blue,
-                  width: 100,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.red,
-                  width: 50,
-                  height: 50,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.cyan,
-                  width: 50,
-                  height: 50,
-                ),
-                Container(
-                  color: Colors.pinkAccent,
-                  width: 50,
-                  height: 50,
-                ),
-                Container(
-                  color: Colors.purple,
-                  width: 50,
-                  height: 50,
-                ),
-              ],
-            ),
-            Container(
-              color: Colors.amber,
-              width: 300,
-              height: 30,
-              child: const Text(
-                "Texto maluco",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  print("Você apertou o Botão!");
-                },
-                child: Text("Aperte o botão!"))
+            Task("Aprender Flutter"),
+            Task("Aprender SQL"),
+            Task("Aprender Python"),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
         ),
       ),
     );
   }
 }
 
-/*
-home: Stack(
-          alignment: AlignmentDirectional.bottomCenter,
-          children: [
-            Container(
-              color: Colors.red,
-              width: 500,
-              height: 300,
+class Task extends StatelessWidget {
+  final String name;
+  int level;
+
+  Task(this.name, {Key? key, this.level = 0}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.blue,
+            height: 140,
+          ),
+          Container(
+            color: Colors.white,
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  color: Colors.black26,
+                  width: 72,
+                  height: 100,
+                ),
+                Text(
+                  name,
+                  style: const TextStyle(fontSize: 25),
+                ),
+                Container(
+                  height: 60,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        print("Aprendendo $name - Level: ${++level}.");
+                      },
+                      child: Column(
+                        children: const [
+                          Icon(Icons.arrow_drop_up),
+                          Text(
+                            "Lvl up",
+                            style: TextStyle(fontSize: 18),
+                          )
+                        ],
+                      )),
+                )
+              ],
             ),
-            Container(
-              color: Colors.white,
-              width: 500,
-              height: 300,
-            ),
-            Container(
-              color: Colors.blue,
-              width: 500,
-              height: 300,
-            )
-          ],
-        )
- */
+          )
+        ],
+      ),
+    );
+  }
+}
