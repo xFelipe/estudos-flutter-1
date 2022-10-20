@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +18,15 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text("Flutter: Meus primeiros passos")),
-        body: Column(
+        body: ListView(
+          scrollDirection: Axis.vertical,
           children: [
-            Task("Aprender Flutter"),
+            Task("Aprender Flutteraa aaaa aaa aaaa AAAAAAA sssss DDDDD"),
             Task("Aprender SQL"),
+            Task("Aprender Python"),
+            Task("Aprender Python"),
+            Task("Aprender Python"),
+            Task("Aprender Python"),
             Task("Aprender Python"),
           ],
         ),
@@ -40,7 +46,8 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
       child: Stack(
         children: [
           Container(
@@ -58,25 +65,32 @@ class Task extends StatelessWidget {
                   width: 72,
                   height: 100,
                 ),
-                Text(
-                  name,
-                  style: const TextStyle(fontSize: 25),
+                Container(
+                  width: 200,
+                  child: Text(
+                    name,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 25),
+                  ),
                 ),
                 Container(
                   height: 60,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        print("Aprendendo $name - Level: ${++level}.");
-                      },
-                      child: Column(
-                        children: const [
-                          Icon(Icons.arrow_drop_up),
-                          Text(
-                            "Lvl up",
-                            style: TextStyle(fontSize: 18),
-                          )
-                        ],
-                      )),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          print("Aprendendo $name - Level: ${++level}.");
+                        },
+                        child: Column(
+                          children: const [
+                            Icon(Icons.arrow_drop_up),
+                            Text(
+                              "Lvl up",
+                              style: TextStyle(fontSize: 18),
+                            )
+                          ],
+                        )),
+                  ),
                 )
               ],
             ),
