@@ -38,12 +38,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String name;
-  int level;
+  int nivel;
 
-  Task(this.name, {Key? key, this.level = 0}) : super(key: key);
+  Task(this.name, {Key? key, this.nivel = 0}) : super(key: key);
 
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -54,46 +59,77 @@ class Task extends StatelessWidget {
             color: Colors.blue,
             height: 140,
           ),
-          Container(
-            color: Colors.white,
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  color: Colors.black26,
-                  width: 72,
-                  height: 100,
+          Column(
+            children: [
+              Container(
+                color: Colors.white,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      color: Colors.black26,
+                      width: 72,
+                      height: 100,
+                    ),
+                    Container(
+                      width: 200,
+                      child: Text(
+                        widget.name,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 25),
+                      ),
+                    ),
+                    Container(
+                      height: 60,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                widget.nivel++;
+                                print(
+                                    "Aprendendo ${widget.name} - Nível: ${widget.nivel}.");
+                              });
+                            },
+                            child: Column(
+                              children: const [
+                                Icon(Icons.arrow_drop_up),
+                                Text(
+                                  "Lvl up",
+                                  style: TextStyle(fontSize: 18),
+                                )
+                              ],
+                            )),
+                      ),
+                    )
+                  ],
                 ),
-                Container(
-                  width: 200,
-                  child: Text(
-                    name,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 25),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      width: 250,
+                      child: LinearProgressIndicator(
+                        value: widget.nivel / 10,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                ),
-                Container(
-                  height: 60,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          print("Aprendendo $name - Level: ${++level}.");
-                        },
-                        child: Column(
-                          children: const [
-                            Icon(Icons.arrow_drop_up),
-                            Text(
-                              "Lvl up",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        )),
-                  ),
-                )
-              ],
-            ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Nível: ${widget.nivel}",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  )
+                ],
+              )
+            ],
           )
         ],
       ),
