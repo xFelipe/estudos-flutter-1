@@ -25,12 +25,14 @@ class MyApp extends StatelessWidget {
                 fotoUrl:
                     "https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large"),
             Task(
-              "Aprender SQL", 2,
+              "Aprender SQL",
+              2,
               fotoUrl:
                   "https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg",
             ),
             Task(
-              "Meditar", 3,
+              "Meditar",
+              3,
               fotoUrl:
                   "https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg",
             ),
@@ -51,10 +53,11 @@ class Task extends StatefulWidget {
   int nivel;
   late int dificuldade;
 
-  Task(this.name, int dificuldade, {Key? key, this.nivel = 0, this.fotoUrl}) : super(key: key) {
+  Task(this.name, int dificuldade, {Key? key, this.nivel = 0, this.fotoUrl})
+      : super(key: key) {
     if (dificuldade < 1) {
       this.dificuldade = 1;
-    } else if(dificuldade > 5) {
+    } else if (dificuldade > 5) {
       this.dificuldade = 5;
     } else {
       this.dificuldade = dificuldade;
@@ -73,23 +76,31 @@ class _TaskState extends State<Task> {
       child: Stack(
         children: [
           Container(
-            color: Colors.blue,
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(4)),
             height: 140,
           ),
           Column(
             children: [
               Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(4)),
                 height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      color: Colors.black26,
+                      decoration: BoxDecoration(
+                          color: Colors.black26,
+                          borderRadius: BorderRadius.circular(5)),
                       width: 72,
                       height: 100,
                       child: widget.fotoUrl != null
-                          ? Image.network(widget.fotoUrl!, fit: BoxFit.cover)
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: Image.network(widget.fotoUrl!,
+                                  fit: BoxFit.cover))
                           : null,
                     ),
                     Column(
@@ -113,22 +124,30 @@ class _TaskState extends State<Task> {
                             ),
                             Icon(
                               Icons.star,
-                              color: widget.dificuldade >= 2 ? Colors.blue : Colors.blue[100],
+                              color: widget.dificuldade >= 2
+                                  ? Colors.blue
+                                  : Colors.blue[100],
                               size: 15,
                             ),
                             Icon(
                               Icons.star,
-                              color: widget.dificuldade >= 3 ? Colors.blue : Colors.blue[100],
+                              color: widget.dificuldade >= 3
+                                  ? Colors.blue
+                                  : Colors.blue[100],
                               size: 15,
                             ),
                             Icon(
                               Icons.star,
-                              color: widget.dificuldade >= 4 ? Colors.blue : Colors.blue[100],
+                              color: widget.dificuldade >= 4
+                                  ? Colors.blue
+                                  : Colors.blue[100],
                               size: 15,
                             ),
                             Icon(
                               Icons.star,
-                              color: widget.dificuldade >= 5 ? Colors.blue : Colors.blue[100],
+                              color: widget.dificuldade >= 5
+                                  ? Colors.blue
+                                  : Colors.blue[100],
                               size: 15,
                             ),
                           ],
