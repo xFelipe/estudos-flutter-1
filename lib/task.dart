@@ -43,19 +43,7 @@ class _TaskState extends State<Task> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.circular(5)),
-                      width: 72,
-                      height: 100,
-                      child: widget.fotoUrl != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: Image.network(widget.fotoUrl!,
-                                  fit: BoxFit.cover))
-                          : null,
-                    ),
+                    TaskImage(fotoUrl: widget.fotoUrl),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,28 +59,13 @@ class _TaskState extends State<Task> {
                         Difficulty(widget.dificuldade)
                       ],
                     ),
-                    Container(
-                      height: 60,
-                      width: 75,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              widget.nivel++;
-                              print(
-                                  "Aprendendo ${widget.name} - Nível: ${widget.nivel}.");
-                            });
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Icon(Icons.arrow_drop_up),
-                              Text(
-                                "Lvl up",
-                                style: TextStyle(fontSize: 16),
-                              )
-                            ],
-                          )),
-                    )
+                    LvlUpButtom(onPressed: () {
+                      setState(() {
+                        widget.nivel++;
+                        print(
+                            "Aprendendo ${widget.name} - Nível: ${widget.nivel}.");
+                      });
+                    })
                   ],
                 ),
               ),
@@ -104,6 +77,60 @@ class _TaskState extends State<Task> {
           )
         ],
       ),
+    );
+  }
+}
+
+class LvlUpButtom extends StatelessWidget {
+  void Function() onPressed;
+  LvlUpButtom({
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      width: 75,
+      child: ElevatedButton(
+          onPressed: onPressed,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              Icon(Icons.arrow_drop_up),
+              Text(
+                "Lvl up",
+                style: TextStyle(fontSize: 16),
+              )
+            ],
+          )),
+    );
+  }
+}
+
+class TaskImage extends StatelessWidget {
+  const TaskImage({
+    Key? key,
+    this.fotoUrl,
+  }) : super(key: key);
+
+  final String? fotoUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.black26,
+          borderRadius: BorderRadius.circular(5)),
+      width: 72,
+      height: 100,
+      child: fotoUrl != null
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(fotoUrl!,
+                  fit: BoxFit.cover))
+          : null,
     );
   }
 }
