@@ -22,23 +22,24 @@ class _InitialScreenState extends State<InitialScreen> {
           children: [
             Task("Aprender Flutter", 1,
                 fotoUrl:
-                "https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large"),
+                "assets/images/flutter.png"),
             Task(
               "Aprender SQL",
               2,
               fotoUrl:
-              "https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg",
+              "assets/images/livro.jpg",
             ),
             Task(
               "Meditar",
               3,
               fotoUrl:
-              "https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg",
+              "assets/images/meditacao.jpeg",
             ),
             Task("Aprender Python", 4),
             Task("Aprender Python", 5),
             Task("Aprender Python", 6),
             Task("Aprender Python", -15),
+            SizedBox(height: 60,)
           ],
         ),
       ),

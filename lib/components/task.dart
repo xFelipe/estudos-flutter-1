@@ -129,7 +129,7 @@ class TaskImage extends StatelessWidget {
       child: fotoUrl != null
           ? ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(fotoUrl!, fit: BoxFit.cover))
+              child: Image.asset(fotoUrl!, fit: BoxFit.cover))
           : null,
     );
   }
