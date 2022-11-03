@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'difficulty.dart';
+
 class Task extends StatefulWidget {
   final String name;
   final String? fotoUrl;
@@ -48,7 +50,7 @@ class _TaskState extends State<Task> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 200,
                           child: Text(
                             widget.name,
@@ -62,8 +64,7 @@ class _TaskState extends State<Task> {
                     LvlUpButtom(onPressed: () {
                       setState(() {
                         widget.nivel++;
-                        print(
-                            "Aprendendo ${widget.name} - Nível: ${widget.nivel}.");
+                        // print("Aprendendo ${widget.name} - Nível: ${widget.nivel}.");
                       });
                     })
                   ],
@@ -83,6 +84,7 @@ class _TaskState extends State<Task> {
 
 class LvlUpButtom extends StatelessWidget {
   void Function() onPressed;
+
   LvlUpButtom({
     required this.onPressed,
     Key? key,
@@ -90,7 +92,7 @@ class LvlUpButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 60,
       width: 75,
       child: ElevatedButton(
@@ -121,15 +123,13 @@ class TaskImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.black26,
-          borderRadius: BorderRadius.circular(5)),
+          color: Colors.black26, borderRadius: BorderRadius.circular(5)),
       width: 72,
       height: 100,
       child: fotoUrl != null
           ? ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(fotoUrl!,
-                  fit: BoxFit.cover))
+              child: Image.network(fotoUrl!, fit: BoxFit.cover))
           : null,
     );
   }
@@ -154,7 +154,7 @@ class NivelBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
-            "Nível: ${nivel}",
+            "Nível: $nivel",
             style: const TextStyle(color: Colors.white, fontSize: 18),
           ),
         )
@@ -177,52 +177,13 @@ class ProgressionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Container(
+      child: SizedBox(
         width: 250,
         child: LinearProgressIndicator(
           value: (nivel / difficulty) / 10,
           color: Colors.white,
         ),
       ),
-    );
-  }
-}
-
-class Difficulty extends StatelessWidget {
-  final int difficultyLevel;
-
-  const Difficulty(this.difficultyLevel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Icon(
-          Icons.star,
-          color: Colors.blue,
-          size: 15,
-        ),
-        Icon(
-          Icons.star,
-          color: difficultyLevel >= 2 ? Colors.blue : Colors.blue[100],
-          size: 15,
-        ),
-        Icon(
-          Icons.star,
-          color: difficultyLevel >= 3 ? Colors.blue : Colors.blue[100],
-          size: 15,
-        ),
-        Icon(
-          Icons.star,
-          color: difficultyLevel >= 4 ? Colors.blue : Colors.blue[100],
-          size: 15,
-        ),
-        Icon(
-          Icons.star,
-          color: difficultyLevel >= 5 ? Colors.blue : Colors.blue[100],
-          size: 15,
-        ),
-      ],
     );
   }
 }
