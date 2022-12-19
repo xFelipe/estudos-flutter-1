@@ -19,6 +19,19 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController imageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  bool valueValidator(String? value) {
+    return value != null && value.isEmpty;
+  }
+  bool difficultyValidator(String? value) {
+    return (
+        value == null ||
+        value.isEmpty ||
+        int.tryParse(value) == null ||
+        int.parse(value) > 5 ||
+        int.parse(value) < 0
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -46,7 +59,7 @@ class _FormScreenState extends State<FormScreen> {
                           controller: nameController,
                           textAlign: TextAlign.center,
                           validator: (String? value) {
-                            if (value != null && value.isEmpty) {
+                            if (valueValidator(value)) {
                               return 'Insira o nome da tarefa';
                             }
                             return null;
@@ -64,10 +77,7 @@ class _FormScreenState extends State<FormScreen> {
                           controller: difficultyController,
                           textAlign: TextAlign.center,
                           validator: (String? value) {
-                            if ((value!.isEmpty ||
-                                int.tryParse(value) == null ||
-                                int.parse(value) > 5 ||
-                                int.parse(value) < 0)) {
+                            if (difficultyValidator(value)) {
                               return 'Insira a dificuldade entre 1 e 5';
                             }
                             return null;
@@ -88,8 +98,7 @@ class _FormScreenState extends State<FormScreen> {
                             setState(() {});
                           },
                           validator: (value) {
-                            if (value!.isEmpty ||
-                                !isURL(value, protocols: ['http', 'https'])) {
+                            if (valueValidator(value)) {
                               return 'Insira uma URL de imagem.';
                             }
                             return null;
