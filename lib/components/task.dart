@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 import 'difficulty.dart';
 
@@ -121,17 +122,26 @@ class TaskImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Image? image;
+    if (fotoUrl != null) {
+      if (isURL(fotoUrl)) {
+        image = Image.network(fotoUrl!, fit: BoxFit.cover);
+      } else {
+        image = Image.asset(fotoUrl!, fit: BoxFit.cover);
+      }
+    }
     return Container(
       decoration: BoxDecoration(
           color: Colors.black26, borderRadius: BorderRadius.circular(5)),
       width: 72,
       height: 100,
-      child: fotoUrl != null
+      child: image != null
           ? ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.asset(fotoUrl!, fit: BoxFit.cover))
+              child:  image)
           : null,
     );
+
   }
 }
 

@@ -18,6 +18,7 @@ class _InitialScreenState extends State<InitialScreen> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: TaskInherited.of(context).taskList,
+        padding: const EdgeInsets.only(top: 8, bottom: 50),
       ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
